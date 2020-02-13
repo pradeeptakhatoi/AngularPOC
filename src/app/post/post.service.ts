@@ -8,8 +8,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   public getPosts() {
-    return this.http.get<[any]>('https://jsonplaceholder.typicode.com/posts').pipe(
-      map(posts => posts.slice(0, 5)));
+    return this.http.get<[any]>('./assets/data/posts.json').pipe(map(posts => posts.slice(0, 5)));
   }
 
 }

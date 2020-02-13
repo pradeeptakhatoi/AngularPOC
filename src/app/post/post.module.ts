@@ -10,6 +10,7 @@ import { PostComponent } from './post.component';
   imports: [
     CommonModule,
     PostRoutingModule
-  ]
+  ],
+  providers: []
 })
 export class PostModule { }
