@@ -1,5 +1,17 @@
-<h2>Post Listing</h2>
-
-<div>
-  <div *ngFor="let post of posts">{{ post | json}}<br/><br/></div>
-</div>
+<h1 class="text-center" style="width: 100%;">Post Listing</h1>
+<table class="table" style="width: 100%;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{post.title}}</td>
+      <td>{{post.body}}</td>
+    </tr>
+  </tbody>
+</table>
