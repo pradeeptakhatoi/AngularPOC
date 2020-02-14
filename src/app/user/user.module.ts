@@ -5,9 +5,10 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { UserService } from './user.service';
 import { AddUserComponent } from './add-user/add-user.component';
+import { FormatPhonePipe } from './format-phone.pipe';
 
 @NgModule({
-  declarations: [UserComponent, AddUserComponent],
+  declarations: [UserComponent, AddUserComponent, FormatPhonePipe],
   imports: [
     CommonModule,
     UserRoutingModule
