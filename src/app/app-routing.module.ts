@@ -10,8 +10,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'aboutus', component: AboutusComponent, canActivate: [AuthGuard] },
-  { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule), canLoad: [AdminGuard] },
+  { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
   { path: 'post', loadChildren: () => import('./post/post.module').then(m => m.PostModule), canLoad: [AdminGuard] },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canLoad: [AdminGuard] },
 ];
 
 @NgModule({
