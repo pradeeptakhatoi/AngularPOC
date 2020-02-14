@@ -7,11 +7,16 @@
       <th scope="col">Body</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="!loading">
     <tr *ngFor="let post of posts; let i = index">
       <td>{{i + 1}}</td>
       <td>{{post.title}}</td>
       <td>{{post.body}}</td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="loading">
+    <tr>
+      <td colspan="3" style="text-align: center; width: 400px;">Loading...</td>
     </tr>
   </tbody>
 </table>
