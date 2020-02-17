@@ -9,6 +9,7 @@
       <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched || submitted)" style="color: red;">
         <div *ngIf="f.title.errors.required">Name is required.</div>
         <div *ngIf="f.title.errors.maxlength">Name can't exceed 50 characters.</div>
+        <div *ngIf="f.title.errors.validUsername">Please enter a valid title.</div>
       </div>
     </div>
 

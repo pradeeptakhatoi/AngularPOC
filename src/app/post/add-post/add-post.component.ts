@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { ValidateUsername } from '../../_validators';
 
 @Component({
   selector: 'app-add-post',
@@ -16,7 +17,7 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.createPostForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(50)]],
+      title: ['', [Validators.required, Validators.maxLength(50), ValidateUsername]],
       body: ['', [Validators.required, Validators.minLength(20)]]
     });
   }
