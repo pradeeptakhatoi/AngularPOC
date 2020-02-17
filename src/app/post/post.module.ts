@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PostRoutingModule } from './post-routing.module';
 import { PostComponent } from './post.component';
 import { AddPostComponent } from './add-post/add-post.component';
-import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightLongStringDirective } from './highlight-long-string.directive';
 
 @NgModule({
