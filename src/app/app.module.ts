@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -30,6 +31,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -41,7 +43,7 @@ import { FooterComponent } from './footer/footer.component';
 
     // provider used to create fake backend
     fakeBackendProvider
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

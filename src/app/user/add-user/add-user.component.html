@@ -1,1 +1,72 @@
-<p>add-user works!</p>
+<div class="container">
+  <h2>Add New User</h2>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="row">
+      <div class="col">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <input type="text" pInputText placeholder="Username" name="username" ngModel required>
+        </div>
+      </div>
+      <div class="col">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-lock"></i>
+          </span>
+          <input type="text" pPassword placeholder="Password" name="password" ngModel required>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">
+            <i class="fa fa-calendar"></i>
+          </span>
+          <p-calendar ngModel name="dob" dateFormat="yy-mm-dd" placeholder="DOB Datepicker"></p-calendar>
+        </div>
+      </div>
+      <div class="col">
+        <p-checkbox name="courses" value="1" ngModel label="C"></p-checkbox> &nbsp;
+        <p-checkbox name="courses" value="2" ngModel label="C++"></p-checkbox> &nbsp;
+        <p-checkbox name="courses" value="3" ngModel label="Java"></p-checkbox> &nbsp;
+        <p-checkbox name="courses" value="4" ngModel label=".Net"></p-checkbox> &nbsp;
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <p-radioButton name="gender" value="male" ngModel label="Male"></p-radioButton> &nbsp;
+        <p-radioButton name="gender" value="female" ngModel label="Female"></p-radioButton> &nbsp;
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <p-chips ngModel name="tags" placeholder="Enter Tags"></p-chips>
+      </div>
+      <div class="col">
+        <p-dropdown [options]="cities" ngModel name="city" placeholder="Select Your City" filter="true" optionLabel="name"></p-dropdown>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <textarea name="address" placeholder="Address" ngModel [rows]="4" pInputTextarea autoResize="autoResize" style="width: 100%;"></textarea>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col">
+        <p-editor name="bio" ngModel [style]="{'height':'100px'}" placeholder="Enter Bio..."></p-editor>
+      </div>
+    </div>
+    <br/>
+    <p-button label="Submit" styleClass="ui-button-info"></p-button>
+    <!-- <button type="submit" class="btn btn-primary mt-3">Submit</button> -->
+  </form>
+</div>
