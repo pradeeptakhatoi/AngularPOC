@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ValidateUsername } from '../../_validators';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-add-post',
@@ -12,13 +13,28 @@ export class AddPostComponent implements OnInit {
   createPostForm: FormGroup;
   submitted = false;
   isUpdating = false;
+  loading = false;
+  posts = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private postService: PostService) { }
 
   ngOnInit(): void {
     this.createPostForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(50), ValidateUsername]],
       body: ['', [Validators.required, Validators.minLength(20)]]
+    });
+
+    // Get Posts
+    this.postService.getPosts().subscribe(posts => {
+      this.loading = false;
+      this.posts = posts;
+    }, error => {
+      this.loading = false;
+      console.log(error);
+    });
+
+    this.postService.getNewPost().subscribe((post: any) => {
+      this.posts = [post, ...this.posts];
     });
   }
 
@@ -42,8 +58,11 @@ export class AddPostComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.isUpdating = true;
+
     if (this.createPostForm.valid) {
-      console.log(this.createPostForm.value);
+      this.postService.addNewPost(this.createPostForm.value.title, this.createPostForm.value.body);
+      this.createPostForm.reset();
+      this.submitted = false;
     } else {
       alert('Please enter all form fields!!');
     }
