@@ -13,10 +13,19 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     // Get Posts
-    this.userService.getUsers().subscribe(users => {
+    // this.userService.getUsers().subscribe(users => {
+    //   this.loading = false;
+    //   this.users = users;
+    // }, error => {
+    //   this.loading = false;
+    //   console.log(error);
+    // });
+
+    // Convert Convert Observable to Promise
+    this.userService.getUsers().toPromise().then(users => {
       this.loading = false;
       this.users = users;
-    }, error => {
+    }).catch(error => {
       this.loading = false;
       console.log(error);
     });
