@@ -1,6 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { PostService } from './post.service';
 import { PostComponent } from './post.component';
+import { Observable, Observer } from 'rxjs';
+
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+const mockData = [
+  {
+    name: 'Victor Mejia',
+    email: 'victor.mejia@example.com',
+    phone: '123-456-7890'
+  }
+];
+
+class MockPostService {
+  getPosts(url) {
+    return Observable.create((observer: Observer<any>) => {
+      observer.next(mockData);
+    });
+  }
+}
 
 describe('PostComponent', () => {
   let component: PostComponent;
@@ -8,9 +27,12 @@ describe('PostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule],
+      declarations: [PostComponent],
+      providers: [
+        { provide: PostService, useClass: MockPostService }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
