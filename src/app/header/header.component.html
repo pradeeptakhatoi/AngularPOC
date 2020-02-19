@@ -46,7 +46,10 @@
 
     <ul class="navbar-nav" style="float: right;">
       <li *ngIf="user" class="nav-item">
-        <a class="nav-link">Welcome {{user.firstName}} {{user.lastName}}</a>
+        <a class="nav-link">
+          Welcome
+          <span routerLink="profile" class="font-weight-bold" style="cursor: pointer;">{{user.firstName}} {{user.lastName}}</span>
+        </a>
       </li>
       <li *ngIf="!user" class="nav-item">
         <a class="nav-link font-weight-bold" routerLink="login">Login</a>

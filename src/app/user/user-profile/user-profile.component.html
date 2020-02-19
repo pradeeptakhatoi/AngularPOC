@@ -1,0 +1,47 @@
+<div class="container">
+  <h1 style="text-align: center;">Update Your Profile</h1>
+  <!-- <p style="color: red;">* Please fill all the form fields.</p> -->
+  <form (ngSubmit)="onSubmit();" [formGroup]="updateProfile" method="post" style="min-width: 450px;">
+
+    <div class="form-group">
+      <label for="username">Username :
+        <span style="color: red;">*</span>
+      </label>
+      <input formControlName="username" type="text" class="form-control" placeholder="Username" id="username" name="username" required/>
+      <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched || submitted)" style="color: red;">
+        <div *ngIf="f.username.errors.required">Username is required.</div>
+        <div *ngIf="f.username.errors.maxlength">Username can't exceed 20 characters.</div>
+        <div *ngIf="f.username.errors.validUsername">Please enter a valid username.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Firstname :
+        <span style="color: red;">*</span>
+      </label>
+      <input formControlName="firstName" type="text" class="form-control" placeholder="Enter Firstname" id="firstName" name="firstName"
+        required/>
+      <div *ngIf="f.firstName.invalid && (f.firstName.dirty || f.firstName.touched || submitted)" style="color: red;">
+        <div *ngIf="f.firstName.errors.required">Name is required.</div>
+        <div *ngIf="f.firstName.errors.maxlength">Name can't exceed 50 characters.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">LastName :
+        <span style="color: red;">*</span>
+      </label>
+      <input formControlName="lastName" type="text" class="form-control" placeholder="Enter Lastname" id="lastName" name="lastName"
+        required/>
+      <div *ngIf="f.lastName.invalid && (f.lastName.dirty || f.lastName.touched || submitted)" style="color: red;">
+        <div *ngIf="f.lastName.errors.required">Name is required.</div>
+        <div *ngIf="f.lastName.errors.maxlength">Name can't exceed 50 characters.</div>
+      </div>
+    </div>
+
+    <button [disabled]="isUpdating" class="btn btn-primary">
+      <span *ngIf="isUpdating" class="spinner-border spinner-border-sm mr-1"></span> Submit
+    </button>
+
+  </form>
+</div>

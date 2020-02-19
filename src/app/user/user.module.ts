@@ -19,16 +19,19 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditorModule } from 'primeng/editor';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ButtonModule } from 'primeng/button';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     UserComponent,
     AddUserComponent,
-    FormatPhonePipe
+    FormatPhonePipe,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     UserRoutingModule,
     InputTextModule,
     PasswordModule,
