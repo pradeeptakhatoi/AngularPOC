@@ -13,6 +13,20 @@ export class PostService {
     return this.http.get<[any]>('./assets/data/posts.json').pipe(map(posts => posts.slice(0, 5)));
   }
 
+  public getPostsUsingPromise(limit = 5) {
+    const promise = new Promise((resolve, reject) => {
+      this.http.get<any[]>('./assets/data/posts.json')
+        .pipe(map(posts => posts.slice(0, limit)))
+        .toPromise()
+        .then((posts: any) => {
+          resolve(posts);  // Success
+        }, err => {
+          reject(err); // Error
+        });
+    });
+    return promise;
+  }
+
   addNewPost(title: string, body: string) {
     this.newPostSubject.next({ title, body });
   }
