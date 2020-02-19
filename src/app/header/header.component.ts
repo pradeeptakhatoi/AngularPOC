@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../_models';
 import { AuthenticationService } from '../_services';
 import { Router } from '@angular/router';
@@ -12,16 +11,14 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   title = 'AngularPOC';
   loading = false;
-  user: User;
+  @Input() user: User;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.authenticationService.currentUser.subscribe(user => {
-      this.user = user;
-    });
+    // Code
   }
 
   logout() {

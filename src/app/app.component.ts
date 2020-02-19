@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './_services';
+import { User } from './_models';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'AngularPOC';
-  constructor() { }
+  user: User;
+
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-
+    this.authenticationService.currentUser.subscribe(user => {
+      this.user = user;
+    });
   }
 }
