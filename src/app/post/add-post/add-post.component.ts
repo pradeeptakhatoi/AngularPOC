@@ -11,6 +11,7 @@ import { PostService } from '../post.service';
 })
 export class AddPostComponent implements OnInit {
   createPostForm: FormGroup;
+  title = 'Create New Post';
   submitted = false;
   isUpdating = false;
   loading = false;
@@ -43,8 +44,6 @@ export class AddPostComponent implements OnInit {
 
   // Implement canDeactivate method
   canDeactivate(): Observable<boolean> | boolean {
-    console.log('isUpdating : ' + this.isUpdating);
-    console.log('dirty :' + this.createPostForm.dirty);
     if (this.isUpdating || this.createPostForm.dirty) {
       if (confirm('Discard changes for Person?')) {
         return true;

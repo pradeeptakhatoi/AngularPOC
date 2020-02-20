@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidateUsername } from '../../_validators';
 import { AuthenticationService } from '../../_services';
+import { User } from '../../_models';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +19,7 @@ export class UserProfileComponent implements OnInit {
   get f() { return this.updateProfile.controls; }
 
   ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
+    const user: User = JSON.parse(localStorage.getItem('currentUser'));
     this.updateProfile = this.fb.group({
       username: [user.username, [Validators.required, Validators.maxLength(50), ValidateUsername]],
       firstName: [user.firstName, [Validators.required, Validators.minLength(4)]],
@@ -31,7 +32,7 @@ export class UserProfileComponent implements OnInit {
     this.isUpdating = true;
     if (this.updateProfile.valid) {
       setTimeout(() => {
-        let user = JSON.parse(localStorage.getItem('currentUser'));
+        const user: User = JSON.parse(localStorage.getItem('currentUser'));
         user.username = this.updateProfile.value.username;
         user.firstName = this.updateProfile.value.firstName;
         user.lastName = this.updateProfile.value.lastName;

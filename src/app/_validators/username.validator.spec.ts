@@ -9,8 +9,8 @@ describe('Validate Username', () => {
     expect(ValidateUsername(control)).toBeNull();
   });
 
-  it('username less than 8 char is invalid', () => {
-    control.setValue('1234567');
+  it('username less than 4 char is invalid', () => {
+    control.setValue('abc');
     expect(ValidateUsername(control)).toEqual({ validUsername: true });
   });
 
