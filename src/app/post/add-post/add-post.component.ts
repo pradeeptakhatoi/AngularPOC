@@ -10,18 +10,10 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss'],
   animations: [
-    // the fade-in/fade-out animation.
-    trigger('fadeIn', [
-      // fade in when created. this could also be written as transition('void => *')
-      transition('void => *', [
-        style({ backgroundColor: 'yellow', opacity: 0 }),
-        animate(1000, style({ backgroundColor: 'white', opacity: 1 }))
-      ])
-    ]),
-    trigger('fadeOut', [
-      // fade out when deleted. this could also be written as transition('* => void')
-      transition('* => void', [
-        animate(1000, style({ backgroundColor: 'red', opacity: 0 }))
+    trigger('fade', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [
+        animate(1000)
       ])
     ])
   ]
