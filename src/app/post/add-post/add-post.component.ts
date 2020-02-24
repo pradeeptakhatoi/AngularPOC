@@ -3,19 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ValidateUsername } from '../../_validators';
 import { PostService } from '../post.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { fade } from '../../_helpers/animations';
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss'],
   animations: [
-    trigger('fade', [
-      state('void', style({ opacity: 0 })),
-      transition(':enter, :leave', [
-        animate(1000)
-      ])
-    ])
+    fade
   ]
 })
 export class AddPostComponent implements OnInit {
