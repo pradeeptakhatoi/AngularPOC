@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <p style="color: red;">* Please fill all the form fields.</p>
+  <form (ngSubmit)="onSubmit();" [formGroup]="editPostForm" method="post" style="min-width: 500px;">
+
+    <div class="form-group">
+      <label for="title">Title : <span style="color: red;">*</span></label>
+      <input formControlName="title" type="text" class="form-control" placeholder="Enter Title" id="title" name="title" required/>
+      <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched || submitted)" style="color: red;">
+        <div *ngIf="f.title.errors.required">Name is required.</div>
+        <div *ngIf="f.title.errors.maxlength">Name can't exceed 50 characters.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="body">Body : <span style="color: red;">*</span></label>
+      <textarea formControlName="body" id="body" name="body" required class="form-control" placeholder="Enter Desc" style="height: 100px;"></textarea>
+      <div *ngIf="f.body.invalid && (f.body.dirty || f.body.touched || submitted)" style="color: red;">
+        <div *ngIf="f.body.errors.required">Desc is required.</div>
+        <div *ngIf="f.body.errors.minlength">Desc must be at least 50 characters long.</div>
+      </div>
+    </div>
+
+    <button [disabled]="isUpdating" class="btn btn-primary">
+      <span *ngIf="isUpdating" class="spinner-border spinner-border-sm mr-1"></span>
+      Edit
+    </button>&nbsp;
+    <a [routerLink]="['/post']" type="button" class="btn btn-danger" style="color: #FFF">Cancel</a>
+
+  </form>
+
+</div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -11,6 +11,24 @@ export class PostService {
 
   public getPosts(limit = 5) {
     return this.http.get<[any]>('./assets/data/posts.json').pipe(map(posts => posts.slice(0, limit)));
+  }
+
+  public getSinglePost(id: number) {
+    const promise = new Promise((resolve, reject) => {
+      return this.http.get<[any]>('./assets/data/posts.json')
+        .toPromise()
+        .then((posts: any[]) => {
+          const post = posts.filter(p => p.id == id);
+          if (post && post.length) {
+            resolve(post[0]);  // Success
+          } else {
+            reject('Post Not Found'); // Error
+          }
+        }, err => {
+          reject(err); // Error
+        });
+    });
+    return promise;
   }
 
   public getPostsUsingPromise(limit = 5) {

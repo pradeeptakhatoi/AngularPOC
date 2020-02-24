@@ -8,7 +8,7 @@ import { PostService } from './post.service';
   providers: [PostService]
 })
 export class PostComponent implements OnInit {
-  posts: any = [];
+  posts: any[];
   loading = true;
   constructor(private postService: PostService) { }
 
@@ -23,13 +23,19 @@ export class PostComponent implements OnInit {
     // });
 
     // Get Posts Using Promise
-    this.postService.getPostsUsingPromise(8).then(posts => {
+    this.postService.getPostsUsingPromise(8).then((posts: any[]) => {
       this.loading = false;
       this.posts = posts;
     }, error => {
       this.loading = false;
       console.log(error);
     });
+  }
+
+  onDelete(index) {
+    if (confirm('Are you sure, you want to delete?')) {
+      this.posts.splice(index, 1);
+    }
   }
 
 }
