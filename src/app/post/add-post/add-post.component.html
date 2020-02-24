@@ -33,15 +33,17 @@
         <th scope="col">#</th>
         <th scope="col">Title</th>
         <th scope="col">Body</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody *ngIf="!loading" id="postBody">
-      <tr *ngFor="let post of posts; let i = index">
+      <tr @fadeIn @fadeOut *ngFor="let post of posts; let i = index">
         <td>{{i + 1}}</td>
         <td>
           <div appHighlightLongString [str]="post.title" [len]="20">{{post.title | slice:0:40}}</div>
         </td>
         <td>{{post.body | slice:0:50}}</td>
+        <td><a (click)="onDelete(i)" style="cursor: pointer;">Delete</a></td>
       </tr>
     </tbody>
     <tbody *ngIf="loading">

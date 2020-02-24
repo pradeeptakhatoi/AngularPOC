@@ -3,11 +3,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ValidateUsername } from '../../_validators';
 import { PostService } from '../post.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.scss']
+  styleUrls: ['./add-post.component.scss'],
+  animations: [
+    // the fade-in/fade-out animation.
+    trigger('fadeIn', [
+      // fade in when created. this could also be written as transition('void => *')
+      transition('void => *', [
+        style({ backgroundColor: 'yellow', opacity: 0 }),
+        animate(1000, style({ backgroundColor: 'white', opacity: 1 }))
+      ])
+    ]),
+    trigger('fadeOut', [
+      // fade out when deleted. this could also be written as transition('* => void')
+      transition('* => void', [
+        animate(1000, style({ backgroundColor: 'red', opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class AddPostComponent implements OnInit {
   createPostForm: FormGroup;
@@ -15,7 +32,9 @@ export class AddPostComponent implements OnInit {
   submitted = false;
   isUpdating = false;
   loading = false;
+  isDeleted = true;
   posts = [];
+  changeDivSize = 'initial';
 
   constructor(private fb: FormBuilder, private postService: PostService) { }
 
@@ -37,6 +56,10 @@ export class AddPostComponent implements OnInit {
     this.postService.getNewPost().subscribe((post: any) => {
       this.posts = [post, ...this.posts];
     });
+
+    setInterval(() => {
+      this.changeDivSize = this.changeDivSize === 'final' ? 'initial' : 'final';
+    }, 2500);
   }
 
   // convenience getter for easy access to form fields
@@ -60,10 +83,16 @@ export class AddPostComponent implements OnInit {
 
     if (this.createPostForm.valid) {
       this.postService.addNewPost(this.createPostForm.value.title, this.createPostForm.value.body);
-      this.createPostForm.reset();
+      // this.createPostForm.reset();
       this.submitted = false;
     } else {
       alert('Please enter all form fields!!');
+    }
+  }
+
+  onDelete(index: number) {
+    if (confirm('Are you sure, you want to delete?')) {
+      this.posts.splice(index, 1);
     }
   }
 
