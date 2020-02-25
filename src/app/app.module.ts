@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CapitalizePipe } from './_helpers/capitalize.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CapitalizePipe
   ],
   imports: [
     CommonModule,
