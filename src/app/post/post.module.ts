@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MomentModule } from 'ngx-moment';
 
 import { PostRoutingModule } from './post-routing.module';
 import { PostComponent } from './post.component';
@@ -16,7 +17,8 @@ import { ViewPostComponent } from './view-post/view-post.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PostRoutingModule
+    PostRoutingModule,
+    MomentModule
   ],
   providers: []
 })

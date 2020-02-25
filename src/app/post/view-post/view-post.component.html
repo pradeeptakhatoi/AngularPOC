@@ -1,2 +1,5 @@
-<h1 class="text-center">{{post.title}}</h1>
-<p [innerHtml]="post.body"></p>
+<div *ngIf="!loading">
+  <h1 class="text-center">{{post.title}}</h1>
+  <p>Posted On: {{post.created | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}</p>
+  <p [innerHtml]="post.body"></p>
+</div>

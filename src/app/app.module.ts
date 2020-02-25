@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -37,6 +38,7 @@ import { CapitalizePipe } from './_helpers/capitalize.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MomentModule,
     AppRoutingModule
   ],
   providers: [
