@@ -1,24 +1,24 @@
 <div class="container">
-  <h1>{{title}}</h1>
+  <h1>{{pageHeading}}</h1>
   <p style="color: red;">* Please fill all the form fields.</p>
-  <form (ngSubmit)="onSubmit();" [formGroup]="createPostForm" method="post" style="min-width: 500px;">
+  <form (ngSubmit)="f.form.valid && onSubmit();" #f="ngForm" method="post" style="min-width: 500px;" novalidate>
 
     <div class="form-group">
       <label for="title">Title : <span style="color: red;">*</span></label>
-      <input formControlName="title" type="text" class="form-control" placeholder="Enter Title" id="title" name="title" required/>
-      <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched || submitted)" style="color: red;">
-        <div *ngIf="f.title.errors.required">Name is required.</div>
-        <div *ngIf="f.title.errors.maxlength">Name can't exceed 50 characters.</div>
-        <div *ngIf="f.title.errors.validUsername">Please enter a valid title.</div>
+      <input ngModel type="text" class="form-control" maxlength="50" placeholder="Enter Title" name="title" #title="ngModel" id="title" required/>
+      <div *ngIf="title.invalid && (title.dirty || title.touched || f.submitted)" style="color: red;">
+        <div *ngIf="title.errors.required">Title is required.</div>
+        <div *ngIf="title.errors.maxlength">Title can't exceed  {{title.errors.maxlength?.requiredLength}} characters.</div>
+        <div *ngIf="title.errors.validUsername">Please enter a valid title.</div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="body">Body : <span style="color: red;">*</span></label>
-      <textarea formControlName="body" id="body" name="body" required class="form-control" placeholder="Enter Desc" style="height: 100px;"></textarea>
-      <div *ngIf="f.body.invalid && (f.body.dirty || f.body.touched || submitted)" style="color: red;">
-        <div *ngIf="f.body.errors.required">Desc is required.</div>
-        <div *ngIf="f.body.errors.minlength">Desc must be at least 50 characters long.</div>
+      <textarea ngModel id="body" name="body" class="form-control" minlength="50" #body="ngModel" placeholder="Enter Desc" style="height: 100px;" required></textarea>
+      <div *ngIf="body.invalid && (body.dirty || body.touched || f.submitted)" style="color: red;">
+        <div *ngIf="body.errors.required">Desc is required.</div>
+        <div *ngIf="body.errors.minlength">Desc must be at least {{body.errors.minlength?.requiredLength}} characters long.</div>
       </div>
     </div>
 

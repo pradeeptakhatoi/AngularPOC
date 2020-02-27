@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ValidateUsername } from '../../_validators';
 import { PostService } from '../post.service';
@@ -14,22 +14,15 @@ import { fade } from '../../_helpers/animations';
   ]
 })
 export class AddPostComponent implements OnInit {
-  createPostForm: FormGroup;
-  title = 'Create New Post';
-  submitted = false;
-  isUpdating = false;
   loading = false;
-  isDeleted = true;
+  pageHeading = 'Create New Post';
   posts = [];
-  changeDivSize = 'initial';
 
-  constructor(private fb: FormBuilder, private postService: PostService) { }
+  @ViewChild('f') createPostForm: NgForm;
+
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
-    this.createPostForm = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(50), ValidateUsername]],
-      body: ['', [Validators.required, Validators.minLength(20)]]
-    });
 
     // Get Posts
     this.postService.getPosts().subscribe(posts => {
@@ -44,17 +37,11 @@ export class AddPostComponent implements OnInit {
       this.posts = [post, ...this.posts];
     });
 
-    setInterval(() => {
-      this.changeDivSize = this.changeDivSize === 'final' ? 'initial' : 'final';
-    }, 2500);
   }
-
-  // convenience getter for easy access to form fields
-  get f() { return this.createPostForm.controls; }
 
   // Implement canDeactivate method
   canDeactivate(): Observable<boolean> | boolean {
-    if (this.isUpdating || this.createPostForm.dirty) {
+    if (this.createPostForm.submitted || this.createPostForm.dirty) {
       if (confirm('Discard changes for Person?')) {
         return true;
       } else {
@@ -65,13 +52,9 @@ export class AddPostComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.isUpdating = true;
-
     if (this.createPostForm.valid) {
       this.postService.addNewPost(this.createPostForm.value.title, this.createPostForm.value.body);
-      // this.createPostForm.reset();
-      this.submitted = false;
+      this.createPostForm.resetForm();
     } else {
       alert('Please enter all form fields!!');
     }
