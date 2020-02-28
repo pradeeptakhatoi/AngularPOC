@@ -19,9 +19,16 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CapitalizePipe } from './_helpers/capitalize.pipe';
+
 import { ArticleAComponent } from './articles/article-a/article-a.component';
 import { ArticleBComponent } from './articles/article-b/article-b.component';
 import { ArticleCComponent } from './articles/article-c/article-c.component';
+
+import { AdBannerComponent } from './ads/ad-banner.component';
+import { Ad1Component } from './ads/ad1/ad1.component';
+import { Ad2Component } from './ads/ad2/ad2.component';
+import { Ad3Component } from './ads/ad3/ad3.component';
+import { AdDirective } from './ads/ad.directive';
 
 
 @NgModule({
@@ -35,7 +42,12 @@ import { ArticleCComponent } from './articles/article-c/article-c.component';
     CapitalizePipe,
     ArticleAComponent,
     ArticleBComponent,
-    ArticleCComponent
+    ArticleCComponent,
+    AdBannerComponent,
+    Ad1Component,
+    Ad2Component,
+    Ad3Component,
+    AdDirective
   ],
   imports: [
     CommonModule,
@@ -54,6 +66,11 @@ import { ArticleCComponent } from './articles/article-c/article-c.component';
     // provider used to create fake backend
     fakeBackendProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    Ad1Component,
+    Ad2Component,
+    Ad3Component
+  ]
 })
 export class AppModule { }
