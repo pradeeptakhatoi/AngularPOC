@@ -15,6 +15,7 @@ import { fade } from '../../_helpers/animations';
 })
 export class AddPostComponent implements OnInit {
   loading = false;
+  ratingCount = 0;
   pageHeading = 'Create New Post';
   posts = [];
 

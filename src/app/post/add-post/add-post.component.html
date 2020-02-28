@@ -52,7 +52,7 @@
           <div appHighlightLongString [str]="post.title" [len]="20">{{post.title | slice:0:40}}</div>
         </td>
         <td>{{post.body | slice:0:50}}</td>
-        <td style="text-align: center;">{{post.rating}}</td>
+        <td style="text-align: center;">{{post.rating ? post.rating : 0}}</td>
         <td style="text-align: center;"><a (click)="onDelete(i)" style="cursor: pointer;">Delete</a></td>
       </tr>
     </tbody>
