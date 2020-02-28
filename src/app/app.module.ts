@@ -19,6 +19,9 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CapitalizePipe } from './_helpers/capitalize.pipe';
+import { ArticleAComponent } from './articles/article-a/article-a.component';
+import { ArticleBComponent } from './articles/article-b/article-b.component';
+import { ArticleCComponent } from './articles/article-c/article-c.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { CapitalizePipe } from './_helpers/capitalize.pipe';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    ArticleAComponent,
+    ArticleBComponent,
+    ArticleCComponent
   ],
   imports: [
     CommonModule,
