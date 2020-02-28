@@ -53,7 +53,8 @@ export class AddPostComponent implements OnInit {
 
   onSubmit() {
     if (this.createPostForm.valid) {
-      this.postService.addNewPost(this.createPostForm.value.title, this.createPostForm.value.body);
+      const data: any = this.createPostForm.value;
+      this.postService.addNewPost(data.title, data.body, data.rating);
       this.createPostForm.resetForm();
     } else {
       alert('Please enter all form fields!!');

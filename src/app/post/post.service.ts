@@ -45,8 +45,8 @@ export class PostService {
     return promise;
   }
 
-  addNewPost(title: string, body: string) {
-    this.newPostSubject.next({ title, body });
+  addNewPost(title: string, body: string, rating: number) {
+    this.newPostSubject.next({ title, body, rating});
   }
 
   getNewPost(): Observable<any> {

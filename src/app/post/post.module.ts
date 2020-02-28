@@ -9,9 +9,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightLongStringDirective } from './highlight-long-string.directive';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+import { RatingInputComponent } from '../rating/rating-input.component';
 
 @NgModule({
-  declarations: [PostComponent, AddPostComponent, HighlightLongStringDirective, EditPostComponent, ViewPostComponent],
+  declarations: [
+    PostComponent,
+    AddPostComponent,
+    HighlightLongStringDirective,
+    EditPostComponent,
+    ViewPostComponent,
+    RatingInputComponent
+  ],
   imports: [
     CommonModule,
     CommonModule,
