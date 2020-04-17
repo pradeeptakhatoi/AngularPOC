@@ -1,0 +1,7 @@
+<div class="faq">
+ <h2 (click)="isHidden = !isHidden;"><a href="javascript:;">{{faq.title}}</a></h2>
+ <div [hidden]="isHidden">
+    <ng-content select="p"></ng-content>
+    <ng-content></ng-content>
+ </div>
+</div>

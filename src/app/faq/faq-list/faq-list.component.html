@@ -1,5 +1,4 @@
 <h1 style="text-align: center;">FAQ</h1>
-<div class="faq" *ngFor="let faq of faqList">
-  <h2>{{faq.title}}</h2>
+<app-faq *ngFor="let faq of faqList" [faq]="faq" [isHidden]="false">
   <p [innerHtml]="faq.body"></p>
- </div>
+</app-faq>
