@@ -32,7 +32,7 @@ import { Ad1Component } from './ads/ad1/ad1.component';
 import { Ad2Component } from './ads/ad2/ad2.component';
 import { Ad3Component } from './ads/ad3/ad3.component';
 import { AdDirective } from './ads/ad.directive';
-
+import { FaqModule } from './faq/faq.module';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import { AdDirective } from './ads/ad.directive';
     Ad1Component,
     Ad2Component,
     Ad3Component,
-    AdDirective
+    AdDirective,
   ],
   imports: [
     CommonModule,
@@ -61,7 +61,8 @@ import { AdDirective } from './ads/ad.directive';
     HttpClientModule,
     MomentModule,
     AppRoutingModule,
-    TvmazeModule
+    TvmazeModule,
+    FaqModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
