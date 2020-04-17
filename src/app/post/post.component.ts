@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './post.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-post',
@@ -10,6 +11,7 @@ import { PostService } from './post.service';
 export class PostComponent implements OnInit {
   posts: any[];
   loading = true;
+  today = moment().format('YYYY-MM-DD');
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
