@@ -11,6 +11,7 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { RatingInputComponent } from '../rating/rating-input.component';
 import { PostPipe } from './post.pipe';
+import { POCSharedModule } from '../shared/poc-shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PostPipe } from './post.pipe';
     FormsModule,
     ReactiveFormsModule,
     PostRoutingModule,
-    MomentModule
+    MomentModule,
+    POCSharedModule
   ],
   providers: []
 })

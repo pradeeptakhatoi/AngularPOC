@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <label for="body">Body : <span style="color: red;">*</span></label>
-      <textarea ngModel id="body" name="body" class="form-control" minlength="50" #body="ngModel" placeholder="Enter Desc" style="height: 100px;" required></textarea>
+      <textarea appAutoGrow [minHeight]="100" ngModel id="body" name="body" class="form-control" minlength="50" #body="ngModel" placeholder="Enter Desc" style="height: 100px;" required></textarea>
       <div *ngIf="body.invalid && (body.dirty || body.touched || f.submitted)" style="color: red;">
         <div *ngIf="body.errors.required">Desc is required.</div>
         <div *ngIf="body.errors.minlength">Desc must be at least {{body.errors.minlength?.requiredLength}} characters long.</div>
