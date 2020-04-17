@@ -19,7 +19,7 @@ export class AddPostComponent implements OnInit {
   pageHeading = 'Create New Post';
   posts = [];
 
-  @ViewChild('f') createPostForm: NgForm;
+  @ViewChild('f', {static: false}) createPostForm: NgForm;
 
   constructor(private postService: PostService) { }
 
@@ -54,8 +54,13 @@ export class AddPostComponent implements OnInit {
 
   onSubmit() {
     if (this.createPostForm.valid) {
-      const data: any = this.createPostForm.value;
-      this.postService.addNewPost(data.title, data.body, data.rating);
+      const {title, body, rating} = this.createPostForm.value; // Object Destructured
+      const newPost = {title, body, rating};
+      this.posts = [newPost, ...this.posts]; // Update post list using spread operator
+      // this.posts.unshift(newPost);
+      // this.posts = this.posts.slice(0);
+      // this.posts.unshift(newPost);
+      // this.postService.addNewPost(title, body, rating);
       this.createPostForm.resetForm();
     } else {
       alert('Please enter all form fields!!');

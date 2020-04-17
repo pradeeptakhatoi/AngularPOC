@@ -10,6 +10,7 @@ import { HighlightLongStringDirective } from './highlight-long-string.directive'
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { RatingInputComponent } from '../rating/rating-input.component';
+import { PostPipe } from './post.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RatingInputComponent } from '../rating/rating-input.component';
     HighlightLongStringDirective,
     EditPostComponent,
     ViewPostComponent,
-    RatingInputComponent
+    RatingInputComponent,
+    PostPipe
   ],
   imports: [
     CommonModule,
