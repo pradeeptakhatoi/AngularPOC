@@ -3,13 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { HeroRoutingModule } from './hero-routing.module';
 import { HeroComponent } from './hero.component';
+import { POCSharedModule } from '../shared/poc-shared.module';
+import { ViewHeroComponent } from './view/view-hero.component';
 
 
 @NgModule({
-  declarations: [HeroComponent],
+  declarations: [
+    HeroComponent,
+    ViewHeroComponent
+  ],
   imports: [
     CommonModule,
-    HeroRoutingModule
+    HeroRoutingModule,
+    POCSharedModule
+  ],
+  entryComponents: [
+    ViewHeroComponent
   ]
 })
 export class HeroModule { }

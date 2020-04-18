@@ -1,4 +1,5 @@
 <h1 class="text-center" style="width: 100%;">Hero Listing</h1>
+<button type="button" class="btn btn-primary" (click)="openModal(template)" style="float: right;  margin: 5px;">Add New Hero</button>
 <table class="table" style="width: 100%;">
   <thead class="thead-dark">
     <tr>
@@ -6,6 +7,7 @@
       <th scope="col">Name</th>
       <th scope="col" class="text-center">Image</th>
       <th scope="col">Info</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody *ngIf="!isLoading">
@@ -16,6 +18,7 @@
         <img src="{{hero.image}}" style="width: 150px;" />
       </td>
       <td>{{hero.info}}</td>
+      <td><a (click)="openModalWithComponent(hero)" href="javascript:;">View</a></td>
     </tr>
   </tbody>
   <tbody *ngIf="isLoading">
@@ -26,3 +29,16 @@
     </tr>
   </tbody>
 </table>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template>
+
