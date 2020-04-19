@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, finalize } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -10,7 +10,11 @@ export class PostService {
   constructor(private http: HttpClient) { }
 
   public getPosts(limit = 5) {
-    return this.http.get<[any]>('./assets/data/posts.json').pipe(map(posts => posts.slice(0, limit)));
+    return this.http.get<[any]>('./assets/data/posts.json')
+    .pipe(
+      map(posts => posts.slice(0, limit)),
+      finalize(() => console.log('Execution Complete.')) // Execute when the observable completes
+    );
   }
 
   public getSinglePost(id: number) {
@@ -50,7 +54,10 @@ export class PostService {
   }
 
   getNewPost(): Observable<any> {
-    return this.newPostSubject.asObservable();
+    return this.newPostSubject.asObservable()
+    .pipe(
+      finalize(() => console.log('Execution Complete.')) // Execute when the observable completes
+    );
   }
 
 }
