@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { ValidateUsername } from '../../_validators';
 import { PostService } from '../post.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Route } from '../../../../node_modules/@angular/compiler/src/core';
+import { ICanDeactivate } from 'src/app/_helpers/can-deactivate';
 
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
   styleUrls: ['./edit-post.component.scss']
 })
-export class EditPostComponent implements OnInit {
+export class EditPostComponent implements OnInit, ICanDeactivate {
 
   editPostForm: FormGroup;
   title = 'Edit Post';
@@ -88,6 +88,9 @@ export class EditPostComponent implements OnInit {
     }
   }
 
+  hasChanges(): Observable<boolean> | Promise<boolean> | boolean {
+    return this.editPostForm.touched;
+  }
 
 }
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ValidateUsername } from '../../_validators';
 import { PostService } from '../post.service';
 import { fade } from '../../_helpers/animations';
+import { ICanDeactivate } from 'src/app/_helpers/can-deactivate';
 
 @Component({
   selector: 'app-add-post',
@@ -13,7 +14,7 @@ import { fade } from '../../_helpers/animations';
     fade
   ]
 })
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit, ICanDeactivate {
   loading = false;
   ratingCount = 0;
   pageHeading = 'Create New Post';
@@ -40,18 +41,6 @@ export class AddPostComponent implements OnInit {
 
   }
 
-  // Implement canDeactivate method
-  canDeactivate(): Observable<boolean> | boolean {
-    if (this.createPostForm.submitted || this.createPostForm.dirty) {
-      if (confirm('Discard changes for Person?')) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return true;
-  }
-
   onSubmit() {
     if (this.createPostForm.valid) {
       const {title, body, rating} = this.createPostForm.value; // Object Destructured
@@ -71,6 +60,10 @@ export class AddPostComponent implements OnInit {
     if (confirm('Are you sure, you want to delete?')) {
       this.posts.splice(index, 1);
     }
+  }
+
+  hasChanges(): Observable<boolean> | Promise<boolean> | boolean {
+    return this.createPostForm.touched;
   }
 
 }
