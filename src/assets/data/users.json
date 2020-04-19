@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "role": "user",
+    "role": "2",
     "username": "test",
     "password": "test",
     "firstName": "Test",
@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "role": "admin",
+    "role": "1",
     "username": "admin",
     "password": "admin",
     "firstName": "Admin",

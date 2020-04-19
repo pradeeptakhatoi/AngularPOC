@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -8,7 +9,9 @@ import { UserService } from './user.service';
 })
 export class UserComponent implements OnInit {
   loading = false;
-  users: any = [];
+  users: any[] = [];
+  roles: any[] = [];
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -22,12 +25,21 @@ export class UserComponent implements OnInit {
     // });
 
     // Convert Convert Observable to Promise
-    this.userService.getUsers().toPromise().then(users => {
-      this.loading = false;
-      this.users = users;
-    }).catch(error => {
-      this.loading = false;
-      console.log(error);
+    // this.userService.getUsers().toPromise().then(users => {
+    //   this.loading = false;
+    //   this.users = users;
+    // }).catch(error => {
+    //   this.loading = false;
+    //   console.log(error);
+    // });
+
+    const $users = this.userService.getUsers();
+    const $roles = this.userService.getRoles();
+
+    forkJoin([$users, $roles]).subscribe((results: any[]) => {
+      this.users = results[0];
+      this.roles = results[1];
     });
+
   }
 }

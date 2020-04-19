@@ -10,4 +10,9 @@ export class UserService {
   public getUsers() {
     return this.http.get<[any]>('./assets/data/users.json').pipe(map(items => items.slice(0, 5)));
   }
+
+  public getRoles() {
+    return this.http.get<[any]>('./assets/data/roles.json');
+  }
+
 }
