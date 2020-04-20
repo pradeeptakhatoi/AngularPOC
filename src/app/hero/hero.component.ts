@@ -3,6 +3,7 @@ import { HeroService } from './hero.service';
 import { delay } from 'rxjs/operators';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { ViewHeroComponent } from './view/view-hero.component';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-hero',
@@ -21,8 +22,9 @@ export class HeroComponent implements OnInit {
   constructor(private heroService: HeroService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.heroService.getHeros().pipe(delay(2000)).subscribe(heros => {
-      this.heros = heros;
+    this.heroService.getHeros().pipe(delay(2000)).subscribe((response: HttpResponse<any>) => {
+      console.log(response);
+      this.heros = response.body;
       this.isLoading = false;
     }, error => {
       this.isLoading = false;

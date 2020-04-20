@@ -10,7 +10,8 @@ export class HeroService {
   constructor(private http: HttpClient) { }
 
   public getHeros() {
-    return this.http.get<[any]>('./assets/data/heros.json').pipe(map(heros => heros.slice(0, 5)));
+    const options = {observe: 'response'};
+    return this.http.get<[any]>('./assets/data/heros.json', options); //.pipe(map(heros => heros.slice(0, 5)));
   }
 
 }
