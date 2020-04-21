@@ -17,6 +17,10 @@ const routes: Routes = [
   { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
   { path: 'post', loadChildren: () => import('./post/post.module').then(m => m.PostModule), canLoad: [AdminGuard] },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canLoad: [AdminGuard] },
+  {
+    path: 'miscellaneous',
+    loadChildren: () => import('./miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule),
+  },
 ];
 
 @NgModule({

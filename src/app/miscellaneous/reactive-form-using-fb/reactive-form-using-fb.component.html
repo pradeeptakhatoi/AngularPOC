@@ -1,0 +1,105 @@
+<h1 class="h3 text-center">{{title}}</h1>
+<form (ngSubmit)="onSubmit();" [formGroup]="userForm" novalidate>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="firstName">First Name</label>
+      <input type="text"
+            formControlName="firstName"
+            class="form-control"
+            id="firstName"
+            placeholder="First Name"
+            autocomplete="off"
+            required>
+        <div class="alert alert-danger" *ngIf="(f.firstName.touched || submitted) && f.firstName.errors">
+          <div *ngIf="f.firstName.errors.required">Please enter first name.</div>
+          <div *ngIf="f.firstName.errors.minlength">Firstname should be less than {{f.firstName.errors.minlength.requiredLength}} chars.</div>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="lastName">Last Name</label>
+      <input type="text" formControlName="lastName"  class="form-control" id="lastName" placeholder="Last Name" required>
+      <div class="alert alert-danger" *ngIf="(f.lastName.touched || submitted) && f.lastName.errors">
+        <div *ngIf="f.lastName.errors.required">Please enter last name.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email"
+              name="email"
+              formControlName="email"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+              autocomplete="off"
+              required>
+      <div class="alert alert-danger" *ngIf="(f.email.touched || submitted) && f.email.errors">
+        <div *ngIf="f.email.errors.required">Please enter last name.</div>
+        <div *ngIf="f.email.errors.email">Please enter a valid email.</div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Password <span style="color: red;">Note: 8-15 char long conating a-z, 0-9, _ and @</span></label>
+      <input type="password" formControlName="password" name="password" class="form-control" id="password" placeholder="Password" required autocomplete="off">
+      <div class="alert alert-danger" *ngIf="(f.password.touched || submitted) && f.password.errors">
+        <div *ngIf="f.password.errors.required">Please enter password.</div>
+        <div *ngIf="f.password.errors.pattern">Please enter a valid password.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div formGroupName="address">
+    <div class="form-group">
+      <label for="inputAddress">Address 1</label>
+      <input type="text" formControlName="address1" name="address1" class="form-control" id="address1" placeholder="1234 Main St">
+      <div class="alert alert-danger" *ngIf="(f.address.get('address1').touched || submitted) && f.address.get('address1').errors">
+        <div *ngIf="f.address.get('address1').errors.required">Please enter address line 1.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" formControlName="address2" name="address2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" formControlName="city" name="city" class="form-control" id="inputCity">
+        <div class="alert alert-danger" *ngIf="(f.address.get('city').touched || submitted) && f.address.get('city').errors">
+          <div *ngIf="f.address.get('city').errors.required">Please enter address line 1.</div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" formControlName="state"  name="state" class="form-control">
+          <option selected value="">Select State</option>
+          <option *ngFor="let state of states" [value]="state">{{state.name}}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="(f.address.get('state').touched || submitted) && f.address.get('state').errors">
+          <div *ngIf="f.address.get('state').errors.required">Please select state.</div>
+        </div>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" formControlName="zip" name="zip" class="form-control" id="inputZip">
+        <div class="alert alert-danger" *ngIf="(f.address.get('zip').touched || submitted) && f.address.get('zip').errors">
+          <div *ngIf="f.address.get('zip').errors.required">Enter zip.</div>
+          <div *ngIf="f.address.get('zip').errors.pattern">Invalid zip.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" name="tc" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

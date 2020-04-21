@@ -1,0 +1,99 @@
+<h1 class="h3 text-center">{{title}}</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit();" novalidate>
+
+  <!--Validation using template reference on the input-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="firstName">First Name</label>
+      <input type="text"
+            ngModel name="firstName"
+            class="form-control"
+            id="firstName"
+            minlength="5"
+            #firstName="ngModel"
+            placeholder="First Name"
+            autocomplete="off"
+            required>
+      <div class="alert alert-danger" *ngIf="(firstName.touched || submitted) && firstName.invalid">
+          <div *ngIf="firstName.errors?.required">Please enter first name.</div>
+          <div *ngIf="firstName.errors?.minlength">First name should be min 5 chars!.</div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="lastName">Last Name</label>
+      <input type="text" ngModel name="lastName" #lastName="ngModel" class="form-control" id="lastName" placeholder="Last Name" required>
+      <div class="alert alert-danger" *ngIf="(lastName.touched || submitted) && lastName.invalid">
+        <div *ngIf="lastName.errors?.required">Please enter last name..</div>
+      </div>
+    </div>
+  </div>
+  <!--Validation using template reference on the input end-->
+
+
+  <!--Validation using form template reference-->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email"
+              ngModel
+              name="email"
+              #email="ngModel"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+              autocomplete="off"
+              required
+              [pattern]="emailRegex">
+      <div class="alert alert-danger" *ngIf="(f.controls.email?.touched || submitted) && f.controls.email.invalid">
+        <div *ngIf="f.controls.email.errors.required">Please enter email.</div>
+        <div *ngIf="f.controls.email.errors.pattern">Please enter a valid email!.</div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Password</label>
+      <input type="password" ngModel name="password" #password="ngModel" class="form-control" id="inputPassword4" placeholder="Password" required autocomplete="off">
+      <div class="alert alert-danger" *ngIf="(f.controls.password?.touched || submitted) && f.controls.password.invalid">
+        <div *ngIf="f.controls.password.errors.required">Please enter password.</div>
+      </div>
+    </div>
+  </div>
+  <!--Validation using form template reference end-->
+
+  <div ngModelGroup="address" #address="ngModelGroup">
+    <div class="form-group">
+      <label for="inputAddress">Address 1</label>
+      <input type="text" ngModel name="address1" #address1="ngModel" class="form-control" id="address1" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" ngModel name="address2" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" ngModel name="city" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label>
+        <select id="inputState" ngModel name="state" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" ngModel name="zip" class="form-control" id="inputZip">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" ngModel name="tc" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
