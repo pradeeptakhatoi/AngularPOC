@@ -9,6 +9,7 @@ import { ReactiveFormComponent } from "./reactive-form/reactive-form.component";
 import { ReactiveFormUsingFBComponent } from "./reactive-form-using-fb/reactive-form-using-fb.component";
 import { DynamicFormsComponent } from "./dynamic-forms/dynamic-forms.component";
 import { DynamicFormInputComponent } from "./dynamic-form-input/dynamic-form-input.component";
+import { DynamicFormQuestionComponent } from "./dynamic-forms/dynamic-form-question.component";
 
 
 const routes = [
@@ -33,9 +34,9 @@ const routes = [
     TemplateDrivenFormComponent,
     ReactiveFormComponent,
     ReactiveFormUsingFBComponent,
-    DynamicFormsComponent,
     DynamicFormInputComponent,
-    DynamicFormInputComponent
+    DynamicFormsComponent,
+    DynamicFormQuestionComponent
   ],
   providers: [],
 })
