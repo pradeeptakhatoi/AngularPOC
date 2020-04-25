@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  logger: 'console',
   apiUrl: 'http://localhost:4200/'
 };
 
