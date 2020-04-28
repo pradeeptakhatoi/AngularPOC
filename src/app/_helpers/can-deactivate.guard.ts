@@ -17,9 +17,13 @@ export class CanDeactivateGuard implements CanDeactivate<ICanDeactivate> {
       console.log(currentState);
       if(component.hasChanges()) {
         const msg = 'Entries will not be saved!. You leave this screen.?';
-        return confirm(msg);
+        // return confirm(msg); // Using Boolean
+        // return of(confirm(msg));  // Using Observable
+        return new Promise((resolve, reject) => { resolve(confirm(msg)); }); // Using Promise
       }
-      return true;
+      // return true;
+      // return of(true);
+      return new Promise((resolve, reject) => { resolve(true); });
   }
 
 }
