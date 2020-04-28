@@ -10,6 +10,7 @@ import { ReactiveFormUsingFBComponent } from "./reactive-form-using-fb/reactive-
 import { DynamicFormsComponent } from "./dynamic-forms/dynamic-forms.component";
 import { DynamicFormInputComponent } from "./dynamic-form-input/dynamic-form-input.component";
 import { DynamicFormQuestionComponent } from "./dynamic-forms/dynamic-form-question.component";
+import { TestMomemtComponent } from './test-momemt/test-momemt.component';
 
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
   { path: "reactive-form-using-fb", component: ReactiveFormUsingFBComponent },
   { path: "dynamic-form-input", component: DynamicFormInputComponent },
   { path: "dynamic-forms", component: DynamicFormsComponent },
+  { path: "test-moment", component: TestMomemtComponent },
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const routes = [
     ReactiveFormUsingFBComponent,
     DynamicFormInputComponent,
     DynamicFormsComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    TestMomemtComponent
   ],
   providers: [],
 })
