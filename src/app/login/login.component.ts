@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || null;
   }
 
   // convenience getter for easy access to form fields
@@ -53,8 +53,16 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value).pipe(first()).subscribe(data => {
-      this.router.navigate([this.returnUrl]);
+    this.authenticationService.login(this.f.username.value, this.f.password.value).pipe(first()).subscribe((user: any) => {
+      if (this.returnUrl) {
+        this.router.navigate([this.returnUrl]);
+      } else {
+        if (user.role === "admin") {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/']);
+        }
+      }
     }, error => {
       this.error = error;
       this.loading = false;

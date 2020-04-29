@@ -33,10 +33,12 @@ import { Ad2Component } from './ads/ad2/ad2.component';
 import { Ad3Component } from './ads/ad3/ad3.component';
 import { AdDirective } from './ads/ad.directive';
 import { FaqModule } from './faq/faq.module';
+import { FrontendlayoutComponent } from './frontend-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FrontendlayoutComponent,
     AboutusComponent,
     HomeComponent,
     LoginComponent,

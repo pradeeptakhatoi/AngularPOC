@@ -4,11 +4,17 @@ import { User } from './_models';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`,
-  styleUrls: ['./app.component.scss'],
+  template: `
+  <app-header [user]="user"></app-header>
+  <div class="content" role="main">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+  `,
 })
-export class AppComponent implements OnInit {
-  title = 'AngularPOC';
+export class FrontendlayoutComponent implements OnInit {
+
+
   user: User;
 
   constructor(private authenticationService: AuthenticationService) { }
@@ -18,4 +24,5 @@ export class AppComponent implements OnInit {
       this.user = user;
     });
   }
+
 }

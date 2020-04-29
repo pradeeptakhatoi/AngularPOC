@@ -7,24 +7,43 @@ import { AuthGuard, AdminGuard } from './_helpers';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { FaqListComponent } from './faq/faq-list/faq-list.component';
 
+import { FrontendlayoutComponent } from './frontend-layout.component';
+import { AdminModule } from '../admin/admin.module';
+
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'aboutus', component: AboutusComponent },
-  { path: 'faq', component: FaqListComponent },
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
-  { path: 'hero', loadChildren: () => import('./hero/hero.module').then(m => m.HeroModule) },
-  { path: 'post', loadChildren: () => import('./post/post.module').then(m => m.PostModule), canLoad: [AdminGuard] },
-  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule), canLoad: [AdminGuard] },
   {
-    path: 'miscellaneous',
-    loadChildren: () => import('./miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule),
+    path: '',
+    component: FrontendlayoutComponent,
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'aboutus', component: AboutusComponent },
+      { path: 'faq', component: FaqListComponent },
+      { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard], },
+      {
+        path: 'hero',
+        loadChildren: () => import('./hero/hero.module').then((m) => m.HeroModule),
+      },
+      {
+        path: 'post',
+        loadChildren: () => import('./post/post.module').then((m) => m.PostModule), canLoad: [AdminGuard],
+      },
+      {
+        path: 'user',
+        loadChildren: () => import('./user/user.module').then((m) => m.UserModule), canLoad: [AdminGuard],
+      },
+      {
+        path: 'miscellaneous',
+        loadChildren: () => import('./miscellaneous/miscellaneous.module').then((m) => m.MiscellaneousModule),
+      },
+    ],
   },
+  { path: 'admin', loadChildren: () => import('../admin/admin.module').then((m) => AdminModule) },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

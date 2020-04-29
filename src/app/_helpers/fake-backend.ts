@@ -6,8 +6,9 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '../_models';
 
 const users: User[] = [
-  { id: 1, role: 'user', username: 'test', password: 'test', firstName: 'Test', lastName: 'User' },
-  { id: 2, role: 'admin', username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User' }
+  { id: 1, role: 'admin', username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User'},
+  { id: 2, role: 'user', username: 'user', password: 'user', firstName: 'Test', lastName: 'User' },
+  { id: 3, role: 'user', username: 'test', password: 'test', firstName: 'Test 2', lastName: 'User' }
 ];
 
 @Injectable()
