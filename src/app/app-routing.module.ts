@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard, AdminGuard } from './_helpers';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { FaqListComponent } from './faq/faq-list/faq-list.component';
 
 import { FrontendlayoutComponent } from './frontend-layout.component';
-import { AdminModule } from '../admin/admin.module';
+
+
+import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -27,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'post',
-        loadChildren: () => import('./post/post.module').then((m) => m.PostModule), canLoad: [AdminGuard],
+        loadChildren: () => import('./post/post.module').then((m) => m.PostModule),
       },
       {
         path: 'user',
@@ -39,7 +41,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'admin', loadChildren: () => import('../admin/admin.module').then((m) => AdminModule) },
+  { path: 'admin', loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule), canLoad: [AdminGuard] },
 ];
 
 @NgModule({
