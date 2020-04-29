@@ -15,14 +15,14 @@
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/hero']" routerLinkActive="router-link-active" >Heros</a>
       </li>
-      <li *ngIf="user" class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           Posts
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['/post']">View Posts</a>
-          <a *ngIf="user.role === 'admin'" class="dropdown-item" [routerLink]="['/post/addpost']">Add New Post</a>
+          <a *ngIf="user?.role === 'admin'" class="dropdown-item" [routerLink]="['/post/addpost']">Add New Post</a>
         </div>
       </li>
       <li *ngIf="user && user.role === 'admin'" class="nav-item dropdown">
