@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    console.log('Before Update : ' + JSON.stringify(this.user));
+    // console.log('Before Update : ' + JSON.stringify(this.user));
     setTimeout(() => {
       if (this.user) {
         this.user.firstName = 'Pradeepta';
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, DoCheck {
         this.user.username = 'pradeepta';
         this.userUpdated = true;
       }
-      console.log('After Update : ' + JSON.stringify(this.user));
+      // console.log('After Update : ' + JSON.stringify(this.user));
     }, 2000);
   }
 

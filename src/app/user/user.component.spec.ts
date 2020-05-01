@@ -12,32 +12,24 @@ const mockData = [
   }
 ];
 
-class MockUserService {
-  getUsers() {
-    return Observable.create((observer: Observer<any>) => {
-      observer.next(mockData);
-    });
-  }
-}
 
 describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
+  let mockUserService: UserService;
+
 
   beforeEach(async(() => {
+    mockUserService = jasmine.createSpyObj(['getUsers', 'getRoles']);
     TestBed.configureTestingModule({
       providers: [
-        { provide: UserService, useClass: MockUserService }
+        { provide: UserService, useValue: mockUserService }
       ]
-    })
-      .compileComponents();
-  }));
-
-  beforeEach(() => {
+    });
     fixture = TestBed.createComponent(UserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  }));
+
 
   it('should create', () => {
     expect(component).toBeTruthy();

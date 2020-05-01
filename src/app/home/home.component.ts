@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     setInterval(() => {
       this.slider = ++this.slider % 3;
-      console.log(this.slider);
     }, 4000);
   }
 
