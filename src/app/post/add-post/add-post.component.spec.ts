@@ -9,7 +9,7 @@ import { AddPostComponent } from "./add-post.component";
 import { PostService } from "../post.service";
 import { PostPipe } from "../post.pipe";
 import { NO_ERRORS_SCHEMA, forwardRef } from "@angular/core";
-import { RatingInputComponent } from 'dist/post/post';
+import { RatingInputComponent } from '../../rating/rating-input.component';
 
 const POSTS = [
   {
@@ -34,7 +34,7 @@ describe("AddPostComponent", () => {
   beforeEach(async(() => {
     mockPostService = jasmine.createSpyObj("PostService", ["getPosts", "getNewPost"]);
     TestBed.configureTestingModule({
-      declarations: [AddPostComponent, PostPipe],
+      declarations: [AddPostComponent, PostPipe, RatingInputComponent],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [RouterTestingModule, ReactiveFormsModule, FormsModule, BrowserAnimationsModule],
       providers: [
