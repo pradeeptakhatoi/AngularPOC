@@ -7,6 +7,7 @@ import { CanDeactivateGuard } from "../_helpers/can-deactivate.guard";
 import { EditPostComponent } from "./edit-post/edit-post.component";
 import { ViewPostComponent } from "./view-post/view-post.component";
 import { AuthGuard } from '../guards/auth.guard';
+import { PostListComponent } from './post-list/post-list.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     component: PostComponent,
     canActivateChild: [AuthGuard],
     children: [
+      { path: "", component: PostListComponent },
       { path: "addpost", component: AddPostComponent, canDeactivate: [CanDeactivateGuard], },
       { path: "editpost/:id", component: EditPostComponent, canDeactivate: [CanDeactivateGuard], },
       { path: "viewpost/:id", component: ViewPostComponent },

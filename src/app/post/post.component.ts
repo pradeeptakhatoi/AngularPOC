@@ -1,43 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from './post.service';
-import moment from 'moment';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
-  providers: [PostService]
+  selector: "app-post",
+  templateUrl: "./post.component.html",
 })
 export class PostComponent implements OnInit {
-  posts: any[];
-  loading = true;
-  today = moment().format('YYYY-MM-DD');
-  constructor(private postService: PostService) { }
+  constructor() {}
 
-  ngOnInit(): void {
-    // Get Posts
-    // this.postService.getPosts().subscribe(posts => {
-    //   this.loading = false;
-    //   this.posts = posts;
-    // }, error => {
-    //   this.loading = false;
-    //   console.log(error);
-    // });
-
-    // Get Posts Using Promise
-    this.postService.getPostsUsingPromise(8).then((posts: any[]) => {
-      this.loading = false;
-      this.posts = posts;
-    }, error => {
-      this.loading = false;
-      console.log(error);
-    });
-  }
-
-  onDelete(index) {
-    if (confirm('Are you sure, you want to delete?')) {
-      this.posts.splice(index, 1);
-    }
-  }
-
+  ngOnInit(): void {}
 }

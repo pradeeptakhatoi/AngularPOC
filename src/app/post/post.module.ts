@@ -12,6 +12,7 @@ import { ViewPostComponent } from './view-post/view-post.component';
 import { RatingInputComponent } from '../rating/rating-input.component';
 import { PostPipe } from './post.pipe';
 import { POCSharedModule } from '../shared/poc-shared.module';
+import { PostListComponent } from './post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { POCSharedModule } from '../shared/poc-shared.module';
     EditPostComponent,
     ViewPostComponent,
     RatingInputComponent,
-    PostPipe
+    PostPipe,
+    PostListComponent
   ],
   imports: [
     CommonModule,
