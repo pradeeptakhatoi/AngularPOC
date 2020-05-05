@@ -7,7 +7,7 @@ import { PostService } from '../post.service';
   templateUrl: './post-list.component.html',
 })
 export class PostListComponent implements OnInit {
-
+  title = 'Post Listing';
   posts: any[];
   loading = true;
   today = moment().format('YYYY-MM-DD');
