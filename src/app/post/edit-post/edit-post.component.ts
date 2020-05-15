@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { ValidateUsername } from "../../_validators";
+import { validateTitle } from "../../_validators/post-title.validator";
 import { PostService } from "../post.service";
 import { ActivatedRoute, Router, NavigationStart, NavigationError, NavigationEnd } from "@angular/router";
 import { ICanDeactivate } from "src/app/_helpers/can-deactivate";
@@ -52,7 +53,7 @@ export class EditPostComponent implements OnInit, ICanDeactivate {
 
   ngOnInit(): void {
     this.editPostForm = this.fb.group({
-      title: ["", [Validators.required, Validators.maxLength(100)]],
+      title: ["", [Validators.required, validateTitle(80)]],
       body: ["", [Validators.required, Validators.minLength(20)]],
     });
 
