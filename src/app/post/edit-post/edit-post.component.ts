@@ -26,7 +26,7 @@ export class EditPostComponent implements OnInit, ICanDeactivate {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.router.events.subscribe((event: Event) => {
+    this.router.events.subscribe((event: any) => {
       // console.log(event);
       if (event instanceof NavigationStart) {
         console.log("NavigationStart");

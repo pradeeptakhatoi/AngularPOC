@@ -6,9 +6,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
 
-// Import custom library
-import { TvmazeModule } from 'tvmaze';
-
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
@@ -63,7 +60,6 @@ import { FrontendlayoutComponent } from './frontend-layout.component';
     HttpClientModule,
     MomentModule,
     AppRoutingModule,
-    TvmazeModule,
     FaqModule
   ],
   providers: [
