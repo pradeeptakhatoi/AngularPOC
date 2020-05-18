@@ -4,6 +4,7 @@ import { PostComponent } from './post.component';
 import { Observable, Observer } from 'rxjs';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const mockData = [
   {
@@ -27,7 +28,10 @@ describe('PostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       declarations: [PostComponent],
       providers: [
         { provide: PostService, useClass: MockPostService }
