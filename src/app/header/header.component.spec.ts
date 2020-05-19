@@ -1,41 +1,67 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { RouterTestingModule } from '@angular/router/testing';
-// import { HeaderComponent } from './header.component';
-// import { Observable, Observer } from 'rxjs';
-// import { AuthenticationService } from '../_services';
+import { async, ComponentFixture, TestBed, fakeAsync, tick, flush } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { Router } from "@angular/router";
 
-// class MockAuthenticationService {
-//   getData: () => {};
-// }
+import { HeaderComponent } from "./header.component";
+import { AuthenticationService } from "../_services";
+import { User } from "../_models";
 
-// describe('HeaderComponent', () => {
-//   let component: HeaderComponent;
-//   let fixture: ComponentFixture<HeaderComponent>;
+class MockAuthenticationService {
+  getData: () => {};
+  logout() {}
+}
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       imports: [RouterTestingModule],
-//       declarations: [HeaderComponent],
-//       providers: [{ provide: AuthenticationService, useClass: MockAuthenticationService }]
-//     }).compileComponents();
-//   }));
+describe("HeaderComponent", () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
+  let authService: AuthenticationService;
+  let router: Router;
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(HeaderComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  const mockUser = {
+    id: 1,
+    role: "admin",
+    firstName: "any",
+    lastName: "thing",
+    username: "pkk",
+  };
 
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [HeaderComponent],
+      providers: [
+        { provide: AuthenticationService, useClass: MockAuthenticationService },
+      ],
+    }).compileComponents();
 
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    authService = TestBed.inject(AuthenticationService);
+    router = TestBed.inject(Router);
+    fixture.detectChanges();
+  }));
 
-//   it('dfgdfgdfgfd', () => {
-//     spyOn(MockAuthenticationService, 'getData').and.returnValue({ subscribe: () => { } });
-//     // do stuff
-//     expect(MockAuthenticationService.getData).toHaveBeenCalled();
-//   });
+  it("HeaderComponent Created", () => {
+    expect(component).toBeTruthy();
+  });
 
+  it("Test ngOnInit Method", fakeAsync(() => {
+    component.user = mockUser;
+    component.ngOnInit();
+    flush();
+    expect(component.user.username).toEqual("pradeepta");
+  }));
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it("Test ngDoCheck Method", () => {
+    component.userUpdated = true;
+    component.ngDoCheck();
+    expect(component.userUpdated).toBeFalse();
+  });
+
+  it("Test Logout Method", () => {
+    const spy = spyOn(router, "navigate");
+    component.logout();
+    expect(spy).toHaveBeenCalled();
+  });
+
+});
