@@ -12,6 +12,8 @@ export class HighlightLongStringDirective implements AfterViewInit {
   constructor(private eRef: ElementRef) { }
 
   ngAfterViewInit(): void {
+    console.log(this.str);
+    console.log(this.len);
     if (this.str && this.str.length > this.len) {
       this.eRef.nativeElement.style.border = '1px dotted red';
     }

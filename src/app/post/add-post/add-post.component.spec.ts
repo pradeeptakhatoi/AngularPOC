@@ -40,7 +40,7 @@ describe("AddPostComponent", () => {
       providers: [
         { provide: PostService, useValue: mockPostService },
       ]
-    });
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddPostComponent);
     component = fixture.componentInstance;
@@ -55,7 +55,7 @@ describe("AddPostComponent", () => {
 
   it("title should equal to title set my the component", () => {
     fixture.detectChanges();
-    expect(component.pageHeading).toContain(fixture.nativeElement.querySelector("h1").textContent);
+    expect(fixture.nativeElement.querySelector("h1").textContent).toContain(component.pageHeading);
   });
 
   it("should use the posts list from the service", () => {

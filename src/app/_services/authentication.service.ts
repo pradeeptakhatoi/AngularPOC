@@ -45,6 +45,5 @@ export class AuthenticationService {
     // Added dummy method for testing
     getAllUsers() {
       return this.http.get<any[]>(`${environment.apiUrl}users`);
-      return this.http.get<any[]>(`${environment.apiUrl}userssss`);
     }
 }
