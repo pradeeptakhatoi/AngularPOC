@@ -3,6 +3,8 @@ import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
+import { POCSharedModule } from '../shared/poc-shared.module';
+
 import { MiscellaneousComponent } from "./miscellaneous/miscellaneous.component";
 import { TemplateDrivenFormComponent } from "./template-driven-form/template-driven-form.component";
 import { ReactiveFormComponent } from "./reactive-form/reactive-form.component";
@@ -11,7 +13,8 @@ import { DynamicFormsComponent } from "./dynamic-forms/dynamic-forms.component";
 import { DynamicFormInputComponent } from "./dynamic-form-input/dynamic-form-input.component";
 import { DynamicFormQuestionComponent } from "./dynamic-forms/dynamic-form-question.component";
 import { TestMomemtComponent } from './test-momemt/test-momemt.component';
-
+import { PlayYoutubeVideoComponent } from './play-youtube-video/play-youtube-video.component';
+import { PlayYoutubeVideoPopupComponent } from './play-youtube-video-popup/play-youtube-video-popup.component';
 
 const routes = [
   { path: "", component: MiscellaneousComponent },
@@ -21,6 +24,7 @@ const routes = [
   { path: "dynamic-form-input", component: DynamicFormInputComponent },
   { path: "dynamic-forms", component: DynamicFormsComponent },
   { path: "test-moment", component: TestMomemtComponent },
+  { path: "youtube-videos", component: PlayYoutubeVideoComponent },
 ];
 
 @NgModule({
@@ -28,7 +32,8 @@ const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    POCSharedModule
   ],
   exports: [RouterModule],
   declarations: [
@@ -39,7 +44,9 @@ const routes = [
     DynamicFormInputComponent,
     DynamicFormsComponent,
     DynamicFormQuestionComponent,
-    TestMomemtComponent
+    TestMomemtComponent,
+    PlayYoutubeVideoComponent,
+    PlayYoutubeVideoPopupComponent
   ],
   providers: [],
 })

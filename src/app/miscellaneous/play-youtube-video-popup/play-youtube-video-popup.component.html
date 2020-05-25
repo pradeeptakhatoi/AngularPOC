@@ -1,0 +1,13 @@
+  <div class="modal-header" _ngcontent-yar-c80="">
+     <h4 class="modal-title pull-left" _ngcontent-yar-c80="">{{video.title}}</h4>
+     <button class="close pull-right" aria-label="Close" type="button" (click)="bsModalRef.hide()"><span>×</span></button>
+  </div>
+
+  <div class="modal-body">
+     <p>{{video | json}}</p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-default" type="button" (click)="bsModalRef.hide()">Close</button>
+  </div>
+
