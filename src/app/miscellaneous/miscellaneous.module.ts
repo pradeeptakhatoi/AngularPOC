@@ -16,6 +16,7 @@ import { DynamicFormQuestionComponent } from "./dynamic-forms/dynamic-form-quest
 import { TestMomemtComponent } from './test-momemt/test-momemt.component';
 import { PlayYoutubeVideoComponent } from './play-youtube-video/play-youtube-video.component';
 import { PlayYoutubeVideoPopupComponent } from './play-youtube-video-popup/play-youtube-video-popup.component';
+import { PlayVideoComponent } from './play-video/play-video.component';
 
 const routes = [
   { path: "", component: MiscellaneousComponent },
@@ -48,7 +49,8 @@ const routes = [
     DynamicFormQuestionComponent,
     TestMomemtComponent,
     PlayYoutubeVideoComponent,
-    PlayYoutubeVideoPopupComponent
+    PlayYoutubeVideoPopupComponent,
+    PlayVideoComponent
   ],
   providers: [],
 })

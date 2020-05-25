@@ -1,0 +1,29 @@
+<ng-template [ngIf]="videoType == 'youtube'">
+  <youtube-player
+    [videoId]="videoId"
+    [width]="width"
+    suggestedQuality="highres">
+  </youtube-player>
+</ng-template>
+
+<ng-template [ngIf]="videoType == 'html5'">
+  <div class="html5_video_container">
+    <video id="html5Video"
+      class="video-js vjs-default-skin"
+      [width]="width"
+      height="450px"
+      controls
+      preload="none"
+      poster='http://video-js.zencoder.com/oceans-clip.jpg'
+      data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+      <source [src]="video.url" type='video/mp4' />
+    </video>
+    <!-- <button (click)="playPause()">Play/Pause</button>
+    <button (click)="makeBig()">Big</button>
+    <button (click)="makeSmall()">Small</button>
+    <button (click)="makeNormal()">Normal</button>
+    <button (click)="restart();">Restart</button>
+    <button (click)="skip(-10)">Rewind</button>
+    <button (click)="skip(10)">Forward</button> -->
+  </div>
+</ng-template>
