@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { POCSharedModule } from '../shared/poc-shared.module';
 
@@ -33,6 +34,7 @@ const routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    YouTubePlayerModule,
     POCSharedModule
   ],
   exports: [RouterModule],

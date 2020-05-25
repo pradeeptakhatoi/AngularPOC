@@ -4,7 +4,13 @@
   </div>
 
   <div class="modal-body">
-     <p>{{video | json}}</p>
+
+    <youtube-player
+      [videoId]="videoId"
+      [width]="width"
+      suggestedQuality="highres">
+    </youtube-player>
+
   </div>
 
   <div class="modal-footer">

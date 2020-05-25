@@ -24,6 +24,7 @@ export class PlayYoutubeVideoComponent implements OnInit {
 
   watchVideo(videoData) {
     const config: ModalOptions = {
+      class: 'modal-lg',
       initialState: {
         video: videoData
       }
